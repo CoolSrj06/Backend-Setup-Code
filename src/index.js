@@ -1,20 +1,27 @@
-import dotenv from "dotenv";
+// require('dotenv').config({path: './env'})
+import dotenv from "dotenv"
 import connectDB from "./db/index.js";
-
+import {app} from './app.js'
 dotenv.config({
-    path: './env'
+    path: './.env'
 })
+
+
 
 connectDB()
-.then(() =>{
-        app.listen(process.env.PORT || 8000, () =>
-        console.log(`Server is running on port ${process.env.PORT}`)
-    )
+.then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
+    })
 })
-.catch((err) =>{
-    console.error("Failed to connect to MongoDB:", error.message);
-    process.exit(1);
+.catch((err) => {
+    console.log("MONGO db connection failed !!! ", err);
 })
+
+
+
+
+
 
 
 
@@ -23,23 +30,22 @@ connectDB()
 /*
 import express from "express"
 const app = express()
-
-;( async () => {
+( async () => {
     try {
-        // Connect to MongoDB
-        await mongoose.connect(`${process.env.MongoDB_URL}/${DB_NAME}`)
-        app.on("error", (err) =>{ console.log("Error: ", err);
-        throw err
-        });
+        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+        app.on("errror", (error) => {
+            console.log("ERRR: ", error);
+            throw error
+        })
 
         app.listen(process.env.PORT, () => {
-            console.log(`Server is running on port ${process.env.PORT}`);
+            console.log(`App is listening on port ${process.env.PORT}`);
         })
-    } catch (error) {
-        console.error("Failed to connect to MongoDB:", error.message);
-        throw err;
-    }
 
-} ) () // semicolon is a preservative approach to insure that semicolon is NOT missed in above statements
+    } catch (error) {
+        console.error("ERROR: ", error)
+        throw err
+    }
+})()
 
 */
