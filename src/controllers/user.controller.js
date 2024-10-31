@@ -18,6 +18,10 @@ const registerUser = asyncHandler( async (req, res) => {
 
     const {fullName, email, username, password } = req.body
     //console.log("email: ", email);
+    
+    // This code effectively ensures that all required fields must be filled out with non-empty 
+    // values before proceeding with further processing. If any field is left empty, 
+    // it raises an error to notify the user that all fields are necessary. 
 
     if (
         [fullName, email, username, password].some((field) => field?.trim() === "")

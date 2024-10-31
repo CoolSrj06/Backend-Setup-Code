@@ -6,6 +6,11 @@ import {upload} from "../middlewares/multer.middleware.js"
 const router = Router()
 
 router.route("/register").post(
+/**
+    When a user submits a form with these two fields, 
+    the upload.fields middleware processes and 
+    verifies the files according to the rules specified. 
+*/
     upload.fields([
         {
             name: "avatar",
@@ -17,7 +22,7 @@ router.route("/register").post(
         }
     ]),
     registerUser
-    )
+)
 
 
 export default router
