@@ -11,9 +11,7 @@ app.use(cors({
 }))
 
 app.use(express.json({limit: "16kb"}))
-// When extended is set to true, the middleware can parse complex objects
 app.use(express.urlencoded({extended: true, limit: "16kb"}))
-// The code app.use(express.static("public")) in an Express.js application serves static files from a folder named "public."
 app.use(express.static("public")) 
 app.use(cookieParser())
 
